@@ -41,16 +41,26 @@ def get_pet_labels(image_dir):
          index 0 = pet image label (string)
     """
     results_dic = {}
-    file_names = listdir('pet_images/')
+    file_names = listdir(image_dir)
     pet_name = ""
+    
     for filename in file_names:
+      #Skip filenames that start with "."
+      if filename[0] == '.':
+        continue
       pet_name = ""
       get_name = filename.split('_')
+      # Get label
       for name in get_name:
         if name.isalpha():
           pet_name += name + " "
-      pet_name.strip()
-      results_dic[filename] = [pet_name.lower()]
+      pet_name = pet_name.strip()
+      pet_name = pet_name.lower()
+      # Check for duplicate files
+      if filename not in results_dic:
+        results_dic[filename] = [pet_name]
+      else:
+        print("Warning! duplicate file: " + filename)
 
     # Replace None with the results_dic dictionary that you created with this
     # function
