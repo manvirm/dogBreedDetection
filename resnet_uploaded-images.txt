@@ -1,0 +1,35 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = resnet 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 2 key-value pairs.
+Below are 2 of them:
+ 1 key:                       Enzo.jpg  label:                           
+ 2 key:                      Roxy1.jpg  label:                           
+
+     MATCH:
+
+                      Enzo.jpg: 
+Real:                              Classifier: staffordshire bullterrier, staffordshire bull terrier
+
+                     Roxy1.jpg: 
+Real:                              Classifier:                         kelpie
+
+ NOT A MATCH:
+
+# Total Images 2 # Matches: 2 # NOT Matches: 0
+
+     MATCH:
+
+                      Enzo.jpg: 
+Real:                              Classifier: staffordshire bullterrier, staffordshire bull terrier  
+PetLabelDog: 0  ClassLabelDog: 1
+
+                     Roxy1.jpg: 
+Real:                              Classifier:                         kelpie  
+PetLabelDog: 0  ClassLabelDog: 1
+
+ NOT A MATCH:
+
+# Total Images 2 # Matches: 2 # NOT Matches: 0

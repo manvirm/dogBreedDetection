@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/print_results.py
 #                                                                             
-# PROGRAMMER: 
+# PROGRAMMER: Manvir Mann
 # DATE CREATED:
 # REVISED DATE: 
 # PURPOSE: Create a function print_results that prints the results statistics
@@ -61,6 +61,30 @@ def print_results(results_dic, results_stats_dic, model,
                               False doesn't print anything(default) (bool) 
     Returns:
            None - simply printing results.
-    """    
-    None
+    """   
+    # Print CNN Model Architecure used
+    print("\n** Results Summary for CNN Model Architecture " + model.upper())
+
+    # Print total images, dog images, and not a dog images
+    print("{:20}: {:3d}".format('Total Images: ', results_stats_dic['n_images']))
+    print("{:20}: {:3d}".format('Dog Images: ', results_stats_dic['n_dogs_img']))
+    print("{:20}: {:3d}".format('Not-a-Dog Images: ', results_stats_dic['n_notdogs_img']))
+    
+    #Print percentages 
+    for key, val in results_stats_dic.items():
+        if key[0] == 'p':
+                print("{:20}: {:3f}".format(key, val))
                 
+    #Print misclassified dogs (check if user wants to print this and that there ARE misclassified dogs)
+    if (print_incorrect_dogs) and (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs'] != results_stats_dic['n_images']):
+        print("\nMisclassified Dogs:")
+        for key, val in results_dic.items():
+                if (sum(val[3:]) == 1):
+                        print("Real: {:>26}  Classifier: {:>30}".format(val[0], val[1]))
+                        
+   #Print misclassified dog breeds
+    if (print_incorrect_breed) and (results_stats_dic['n_correct_dogs'] != results_stats_dic['n_correct_breed']):
+        print("\nMisclassified Dog Breeds:")
+        for key, val in results_dic.items():
+                if (sum(val[3:]) == 2) and (val[2] == 0):
+                        print("Real: {:>26}  Classifier: {:>30}".format(val[0], val[1]))
